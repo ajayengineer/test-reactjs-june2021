@@ -1,0 +1,41 @@
+.header--main {
+  min-height: 113px;
+  background: gray;
+  margin-bottom: 30px; }
+
+.mainmenu {
+  margin-top: 50px; }
+
+.mainmenu a {
+  background: red;
+  color: white;
+  padding: 10px;
+  margin: 10px;
+  text-decoration: none; }
+  .mainmenu a:hover {
+    text-decoration: none;
+    color: white;
+    background: brown; }
+
+.footermain {
+  background: black;
+  padding: 25px 0px;
+  float: left;
+  width: 100%;
+  color: white;
+  margin-top: 30px; }
+  .footermain .row {
+    justify-content: space-between; }
+
+.content--part {
+  min-height: calc(100vh - 247px); }
+
+.todolist h6 {
+  padding: 15px 0px; }
+
+.dataloading {
+  width: 100%;
+  text-align: center;
+  line-height: calc(100vh - 247px);
+  color: red;
+  font-size: 36px; }

@@ -1,25 +1,48 @@
-import logo from './logo.svg';
-import './App.css';
+import React from 'react';
+import {Header, Footer, Content} from './components/ComponentsMixing';
+import {BrowserRouter as Router} from 'react-router-dom';
+import './assets/css/style.css';
+import 'bootstrap/dist/css/bootstrap.min.css';
+import { connect } from 'react-redux';
+import { anotherName, addWish } from './actions/myaction';
+import ParentComponent from './ParentComponent';
 
-function App() {
+function App(props) {
+
+  const mywish = props.mywish.map(item=>{
+    return <h2 key={Math.random()}>{item}</h2>
+  })
+  console.log(props)
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+      <React.Fragment>
+          <Router>
+              <Header />
+              <ParentComponent />
+              <h1>{props.myname}</h1>
+              <h3>{mywish}</h3>
+              <button onClick={()=>{props.changeName()}}>Change Name</button>
+              <button onClick={()=>{props.addWish()}}>Change Wishes</button>
+                <Content />
+                
+              <Footer />
+          </Router>
+      </React.Fragment>
+
   );
 }
 
-export default App;
+const mapStateToProps = (state)=>{
+  return {
+    myname:state.name,
+    mywish:state.wish
+  }
+}
+
+const mapDispatchToProps = (dispatch)=>{
+  return{
+    changeName:()=>{ dispatch(anotherName()) },
+    addWish:()=>{ dispatch(addWish()) }
+  }
+}
+
+export default connect(mapStateToProps,mapDispatchToProps)(App);
